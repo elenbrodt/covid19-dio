@@ -2,7 +2,9 @@ import React, {memo, useCallback, useState, useEffect} from 'react'
 import Api from '../../Api'
 import Board from './components/Board'
 import Panel from'./components/Panel'
-import { ContainerStyled } from './style'
+import Footer from './components/Footer'
+import { ContainerStyled, PainelStyled, BoardStyled, FooterStyled} from './style'
+
 
 function Main() {
 
@@ -24,19 +26,26 @@ function Main() {
 
     return (
         <ContainerStyled>
-            <div className="mb-2" >
-                <Panel
-                    data={data}
-                    updateAt={updateAt}
-                    onChange={handleChange}
-                    country={country}
-                    getCovidData={getCovidData}
-                />
-            </div>
-            <div className='board'>
-                <Board data={data}/>
-            </div>
-            
+            <PainelStyled>
+                <div className="mb-2" >
+                    <Panel
+                        data={data}
+                        onChange={handleChange}
+                        country={country}
+                        getCovidData={getCovidData}
+                    />
+                </div>
+            </PainelStyled>
+            <BoardStyled>
+                <div className='mb-2'>
+                    <Board data={data}/>
+                </div>
+            </BoardStyled>
+            <FooterStyled>
+                <div className='mb-2'>
+                    <Footer updateAt={updateAt}/>
+                </div>
+            </FooterStyled>
         </ContainerStyled>
     )
 }

@@ -1,20 +1,20 @@
 import React, {memo} from "react"
-import {Card as CardUI} from '../../../components'
+import {Card} from '../../../components'
 import {
     LabelStyled,
     ValueStyled,
     CardContentStyled
 } from './style'
 
-function Card({value, label, color}){
+function CardInfo({value, label, color}){
     return (
-        <CardUI>
+        <Card>
             <CardContentStyled color={color}>
                 <ValueStyled>{value}</ValueStyled>
                 <LabelStyled>{label}</LabelStyled>
             </CardContentStyled>
-        </CardUI>
+        </Card>
     )
 }
 
-export default memo(Card)
+export default memo(CardInfo)

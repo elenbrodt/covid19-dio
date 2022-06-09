@@ -6,8 +6,8 @@ import { CardPanelContentStyled, ItemStyled } from "./style";
 
 const navigatorHasShare = navigator.share
 
-function Panel({ updateAt, onChange, data, country, getCovidData}) {
-    const {cases, recovered, deaths, todayCases, todayDeaths} = data
+function Panel({ onChange, data, country}) {
+    const { cases, recovered, deaths, todayCases, todayDeaths} = data
 
     const renderCountries = (country, index) =>(
         <MenuItem key={`country-${index}`} value={country.value}>
@@ -18,7 +18,7 @@ function Panel({ updateAt, onChange, data, country, getCovidData}) {
         </MenuItem>
     )
 
-    const textCovid19 = `País ${country} - Casos: ${cases} Recuperados: ${recovered} Mortes: ${deaths} Casos Hoje: ${todayCases} Mortes Hoje: ${todayDeaths} `
+    const textCovid19 = `País: ${country} Casos: ${cases} Recuperados: ${recovered} Mortes: ${deaths} Casos Hoje: ${todayCases} Mortes Hoje: ${todayDeaths} `
 
     const copyInfo=()=>{
         navigator.clipboard.writeText(textCovid19)
@@ -52,17 +52,20 @@ function Panel({ updateAt, onChange, data, country, getCovidData}) {
         <Card>
             <CardPanelContentStyled>
                 <div>
-                    <Typography variant="h5" component="span" color="primary">COVID19  </Typography>
-                    <Typography variant="h6" component="span" color="primary">Painel Coronavírus </Typography>
-                    <div className="pt-2">
+                    <div>
+                        <Typography variant="h5" component="span" color="primary">COVID19  </Typography>
+                    </div>   
+                    <div>
+                        <Typography variant="h6" component="span" color="primary">Painel Coronavírus </Typography>
+                    </div> 
+                    <div>
                         <Select onChange={onChange} value={country}>
-                            {COUNTRIES.map(renderCountries)}
+                        {COUNTRIES.map(renderCountries)}
                         </Select>
                     </div>
                 </div>
                 <div>
                     {navigatorHasShare ? renderCopyButton : renderShareButton }
-                    <Typography variant="body2" component="span" color="primary"> Atualizado em: {updateAt}</Typography>
                 </div>
             </CardPanelContentStyled>
         </Card>
